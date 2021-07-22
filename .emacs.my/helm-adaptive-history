@@ -1,0 +1,3 @@
+;; -*- mode: emacs-lisp -*-
+;; History entries used for helm adaptive display.
+(setq helm-adaptive-history '(("*helm grep extensions*" ("*" ("" . 128) (timestamp . 1614777335.318358)) ("*.c" ("" . 87) (timestamp . 1614156740.6759396)) (" *.h" ("*.h" . 2) (timestamp . 1613554690.973559)) ("*.h" (timestamp . 1613132621.4957867) ("" . 1)) (" *.c" ("*.c" . 4) (timestamp . 1611320938.3671937)))))

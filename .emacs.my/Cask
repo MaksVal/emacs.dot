@@ -1,0 +1,225 @@
+(source gnu)
+(source melpa)
+(source marmalade)
+(source org)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; System dependencies ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (depends-on "request" "0.3.0" :git "https://github.com/MaksVal/emacs-request.git")
+(depends-on "request" :git "https://github.com/tkf/emacs-request.git" :branch "data-coding-system")
+(depends-on "async")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Private dependencies ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (depends-on "youtrack" :git "git@git.nrpo.ntc-vulkan.ru:m.gordeev/emacs-youtrack.git")
+;; (depends-on "youtrack" :git "/home/mgordeev/Projects/emacs-youtrack")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; WeeChat
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (depends-on "weechat")
+;; (depends-on "weechat-alert")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Twitter
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "twittering-mode")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; EMMS, The Emacs Multimedia System.
+(depends-on "emms")
+(depends-on "helm-emms")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; IDE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "go-mode")
+(depends-on "flymake-go")
+(depends-on "nasm-mode")
+(depends-on "rtags")
+(depends-on "company-irony")
+(depends-on "irony")
+(depends-on "irony-eldoc")
+(depends-on "helm-rtags")
+(depends-on "company-rtags")
+(depends-on "gitlab-ci-mode-flycheck")
+(depends-on "xcscope")
+(depends-on "highlight-parentheses")
+(depends-on "tfsmacs")
+
+
+;;(depends-on "go-mode")
+
+(depends-on "lsp-mode")
+(depends-on "lsp-ui")
+(depends-on "lsp-treemacs")
+(depends-on "ccls")
+;; (depends-on "helm-lsp")
+(depends-on "dap-mode")
+(depends-on "which-key")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; IVY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "ivy")
+(depends-on "ivy-rtags")
+(depends-on "lsp-ivy")
+(depends-on "swiper")
+(depends-on "counsel")
+(depends-on "counsel-projectile")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "popup")
+(depends-on "anaconda-mode")
+(depends-on "auto-complete")
+(depends-on "auto-complete-clang")
+(depends-on "auto-complete-c-headers")
+(depends-on "company")
+(depends-on "helm-company")
+(depends-on "company-shell")
+(depends-on "company-c-headers")
+(depends-on "cider")
+(depends-on "cl-lib")
+(depends-on "clojure-mode")
+(depends-on "ctable")
+(depends-on "dash" :git "https://github.com/magnars/dash.el.git" :branch "master")
+;;(depends-on "dash-functional")
+(depends-on "deferred")
+(depends-on "el-get")
+(depends-on "elfeed")
+(depends-on "epc")
+(depends-on "epl")
+(depends-on "es-lib")
+(depends-on "es-windows")
+(depends-on "expand-region")
+(depends-on "f")
+(depends-on "flycheck")
+(depends-on "flycheck-irony")
+(depends-on "flycheck-rtags")
+(depends-on "helm-flycheck")
+
+;;;; HELM PACKAGES
+(depends-on "helm-themes")
+(depends-on "helm-flymake")
+(depends-on "helm-flyspell")
+(depends-on "helm")
+(depends-on "helm-c-yasnippet")
+(depends-on "helm-core")
+(depends-on "helm-swoop")
+(depends-on "helm-gtags")
+(depends-on "helm-descbinds")
+(depends-on "helm-swoop")
+(depends-on "helm-mu")
+(depends-on "helm-ls-git")
+(depends-on "helm-projectile")
+(depends-on "helm-gitlab")
+(depends-on "helm-cscope")
+;;;;;;
+
+(depends-on "ac-helm")
+(depends-on "wcheck-mode") ;; :git "https://github.com/tlikonen/wcheck-mode" :branch "master")
+(depends-on "fuzzy")
+(depends-on "ggtags")
+(depends-on "highlight-parentheses")
+(depends-on "json-rpc")
+(depends-on "let-alist")
+(depends-on "magit")
+(depends-on "gitlab") ;; :git "https://github.com/nlamirault/emacs-gitlab.git")
+(depends-on "exec-path-from-shell")
+(depends-on "move-text")
+(depends-on "markdown-mode")
+(depends-on "ox-gfm")
+(depends-on "multi-term")
+(depends-on "nav")
+(depends-on "nyan-mode")
+(depends-on "package")
+(depends-on "paredit")
+(depends-on "pbcopy")
+(depends-on "pkg-info")
+(depends-on "prodigy")
+;;(depends-on "python-environment")
+(depends-on "queue")
+(depends-on "s")
+(depends-on "virtualenvwrapper")
+(depends-on "wrap-region")
+(depends-on "yaml-mode")
+(depends-on "lua-mode")
+(depends-on "simpleclip")
+(depends-on "bbdb")
+(depends-on "ldap")
+(depends-on "eudc")
+;;(depends-on "bbdb-mu4e")
+(depends-on "ecb")
+(depends-on "popup")
+(depends-on "use-package")
+(depends-on "spacemacs-theme" :git "https://github.com/nashamri/spacemacs-theme")
+(depends-on "tango-2-theme")
+(depends-on "tango-plus-theme")
+(depends-on "tangotango-theme")
+(depends-on "color-theme")
+;;(depends-on "color-theme-solarized")
+(depends-on "paganini-theme")
+(depends-on "powerline") ;;  :git "https://github.com/milkypostman/powerline")
+(depends-on "smart-mode-line-powerline-theme")
+(depends-on "airline-themes")
+(depends-on "doom-themes")
+(depends-on "smart-mode-line")
+(depends-on "evil")
+(depends-on "sr-speedbar")
+;;(depends-on "w3m")
+;;(depends-on "w3m" :git "github.com:rejeep/w3m.git" :branch "cask")
+(depends-on "mu4e-maildirs-extension")
+(depends-on "mu4e-alert")
+
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ORG MODE
+;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "org-redmine")
+(depends-on "org-mime")
+(depends-on "org-mobile-sync")
+;; (depends-on "org-sync" :git "git://orgmode.org/org-sync.git")
+(depends-on "org-sync")
+(depends-on "org")
+(depends-on "org-noter")
+(depends-on "org-mru-clock")
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(depends-on "cil-mode")
+(depends-on "excorporate")
+(depends-on "html-to-markdown")
+(depends-on "sauron")
+;; (depends-on "message-x")
+(depends-on "alert")
+;; (depends-on "anything")
+(depends-on "ranger")
+;; (depends-on "sunrise-commander")
+(depends-on "cmake-mode")
+(depends-on "projectile")
+(depends-on "visual-fill-column")
+(depends-on "git-timemachine")
+(depends-on "smart-mode-line")
+(depends-on "unicode-fonts")
+;; (depends-on "org-sync" :git "git://orgmode.org/org-sync.git")
+;; Examples custom init.el
+;; (depends-on "keyboard-cat-mode" :git "https://github.com/skeeto/.emacs.d.git" :files ("lisp/keyboard-cat-mode.el"))
+(depends-on "slime")
+(depends-on "dired-sidebar") 		;; :git "https://github.com/jojojames/dired-sidebar.git")
+(depends-on "all-the-icons-dired")  ;; :git "https://github.com/jtbm37/all-the-icons-dired.git")
+(depends-on "all-the-icons")
+
+;; (depends-on "ibuffer-sidebar" :git "https://github.com/jojojames/ibuffer-sidebar.git")
+
+
+(depends-on "doom-modeline")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; OTHER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(depends-on "eshell")
+(depends-on "ansi-color") ;; for eshell

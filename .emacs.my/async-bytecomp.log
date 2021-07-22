@@ -1,0 +1,18 @@
+
+In toplevel form:
+lsp-ui-doc.el:33:1:Error: Cannot open load file: Нет такого файла или каталога, dash
+
+In toplevel form:
+lsp-ui-flycheck.el:27:1:Error: Cannot open load file: Нет такого файла или каталога, flycheck
+
+In toplevel form:
+lsp-ui-imenu.el:36:1:Error: Cannot open load file: Нет такого файла или каталога, dash
+
+In toplevel form:
+lsp-ui-peek.el:37:1:Error: Cannot open load file: Нет такого файла или каталога, dash
+
+In toplevel form:
+lsp-ui-sideline.el:33:1:Error: Cannot open load file: Нет такого файла или каталога, dash
+
+In toplevel form:
+lsp-ui.el:36:1:Error: Cannot open load file: Нет такого файла или каталога, dash

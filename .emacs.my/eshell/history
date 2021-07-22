@@ -1,0 +1,98 @@
+nm /usr/lib/libc-2.32.so
+dmesg | tail
+cd ..
+cd ivy/linux/
+cd ..
+cd ..
+ant --execdebug  -v -e -f ivy/linux/build.xml 
+ant --execdebug  -v -e -f ivy/linux/build.xml  -lib /usr/share/ant/lib
+. ~/.bashrc 
+env 
+ant --execdebug  -v -e -f ivy/linux/build.xml 
+cd ..
+grep -R temperature *
+grep -R temperature *
+cd ~/Projects/hw/cisco_rvpn/
+find ./ -type f --exec grep CUSTOM_LINUX {} \	;
+find ./ -type f -exec grep CUSTOM_LINUX {} \	;
+find ./ -type f -exec grep CUSTOM_LINUX {} \	;
+find ./ -type f -exec grep CUSTOM_LINUX {} \;
+find ./ -type f -exec grep -Hi CUSTOM_LINUX {} \;
+find ./ -type f -exec grep -Hi --auto=color CUSTOM_LINUX {} \;
+find ./ -type f -exec grep -Hi --color=auto CUSTOM_LINUX {} \;
+find ./ -type f -exec grep -Hi  CUSTOM_LINUX {} \;
+grep -RHi linux_coordinator *
+grep -RHi fetch *
+grep -Hi fetch *
+grep -H fetch *
+ls -la 
+pwd
+find ./ -name ipoque
+find ../../ -name ipoque
+find ../../../ -name ipoque
+find ../../../../ -name ipoque
+find ../../../../ -name ipoque*
+find ../../../../ -name ipoque*
+find ../../../../ -name ipoque*
+find ../../../../ -name *ipoque*
+find ../../../../ -name *ipoque
+find ../../../../ -name *ipoqu*
+find ../../../../ -name *ipoqu*
+find ./ -name bipoque
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+cd ..
+cd ..
+cd ..
+cd ..
+cd cisco_rvpn/
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+./map_coordinator.sh && ./configure VA feset=advanced build=test-release
+schroot -l
+schroot
+schroot -c chroot:debian9.amd64.buildd
+ls -la fetch*
+find ./ -name fetch*
+find ./ -name *fetch*
+find ../ -name *fetch*
+../IPsec/sources/user-spaces/strongswan-5.9.1.bak/scripts/.deps/fetch.Po
+find ../ -name *fetch*
+cd cisco_rvpn/
+cd ../linux_coordinator/main/ivy/
+ls -la 
+grep -R daq
+grep -R daq *
+grep -R dpi *
+grep -R dpi *
+grep -R daq *
+grep -R ipoque *
+grep -R ipoque ../*
+cd ..
+cd ..
+cd main/
+grep -R ipoque ../*
+ls -la $PWD/pace2.h
+pwd
+cd ..
+cd ..
+cd ..
+ls -la ipo
+cd ..
+ls -la 
+ls -la ipo
+ls -la ipo*
+ls -la $PWD/ipo*
+ls -la $PWD/include
+lrwxrwxrwx   1 mgordeev       mgordeev    109 2021-04-02 17:34 android -> /home/mgordeev/Projects/hw/linux_coordinator/main/contrib/liblog_android/liblog_android-4.3.1/include/android
+ls -la $PWD/include
+cd ipoque/
+sl -al 
+ls -la 
+cd 
+rm 0001-add-FRRouting-to-HW.patch 
+rm *.patch
+ls -la 
+mv 0001-add-new-features-dgdd-and-zdhcp.patch ../git/frr/contrib_frr/
