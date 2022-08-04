@@ -18,8 +18,8 @@
 (require 'repoconf)
 
 ;; cask
-;; (require 'cask "~/.cask/cask.el")
-(require 'cask "/usr/share/cask/cask.el")
+(require 'cask "~/.cask/cask.el")
+;; (require 'cask "/usr/share/cask/cask.el")
 (cask-initialize)
 (package-initialize t)
 (debug-on-entry 'package-initialize)
@@ -36,6 +36,7 @@
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.my
 ;;   (require 'use-package))
+(require 'config-base)
 (require 'config-faces)
 (require 'variablesconf)
 (require 'keybindsconf)
@@ -59,6 +60,7 @@
   (exec-path-from-shell-initialize))
 
 (require 'orgconf)
+(require 'plantuml-mode)
 ;;(require 'orgsync)
 
 (require 'config-markdown)
@@ -88,6 +90,8 @@
 
 (if (file-exists-p "~/.emacs.my/config/config-youtrack.el")
     (require 'config-youtrack))
+
+(require 'config-org-jira)
 
 
 ;; Helm Descbinds
@@ -120,11 +124,6 @@
 ;;;; WebKit: need by python-environment
 ;; (add-to-list 'load-path    "~/.emacs.my/extension/webkit")
 ;; (require 'webkit)
-
-;;;;;;;;;;;
-;; For Magit: disable auto revert buffer
-(setq magit-auto-revert-mode nil)
-(setq magit-gpg-secret-key-hist nil)    ; For working gpg-agent
 
 ;; (if (fboundp 'gnutls-available-p)
 ;;     (fmakunbound 'gnutls-available-p))
@@ -160,8 +159,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(org-confirm-babel-evaluate nil)
+ '(org-export-with-sub-superscripts nil)
  '(package-selected-packages
-   '(wrap-region which-key wcheck-mode visual-fill-column virtualenvwrapper use-package unicode-fonts twittering-mode tfsmacs tangotango-theme tango-plus-theme tango-2-theme sr-speedbar spacemacs-theme smart-mode-line-powerline-theme slime simpleclip sauron ranger prodigy pbcopy paredit paganini-theme ox-gfm org-sync org-redmine org-noter org-mru-clock org-mobile-sync org-mime nyan-mode nav nasm-mode multi-term mu4e-maildirs-extension mu4e-alert move-text magit lua-mode lsp-ui lsp-ivy json-rpc ivy-rtags irony-eldoc html-to-markdown highlight-parentheses helm-themes helm-swoop helm-rtags helm-projectile helm-mu helm-lsp helm-ls-git helm-gtags helm-gitlab helm-flyspell helm-flymake helm-flycheck helm-emms helm-descbinds helm-cscope helm-company helm-c-yasnippet gitlab-ci-mode-flycheck git-timemachine ggtags fuzzy flycheck-rtags flycheck-irony expand-region exec-path-from-shell excorporate evil es-windows es-lib epc elfeed el-get ecb doom-themes doom-modeline dired-sidebar dap-mode counsel-projectile company-shell company-rtags company-irony company-c-headers color-theme cmake-mode cil-mode cider ccls bbdb auto-complete-clang auto-complete-c-headers anaconda-mode all-the-icons-dired airline-themes ac-helm)))
+   (quote
+    (wrap-region which-key wcheck-mode visual-fill-column virtualenvwrapper use-package unicode-fonts twittering-mode tfsmacs tangotango-theme tango-plus-theme tango-2-theme sr-speedbar spacemacs-theme smart-mode-line-powerline-theme slime simpleclip sauron ranger prodigy pbcopy paredit paganini-theme ox-gfm org-sync org-redmine org-noter org-mru-clock org-mobile-sync org-mime nyan-mode nav nasm-mode multi-term mu4e-maildirs-extension mu4e-alert move-text magit lua-mode lsp-ui lsp-ivy json-rpc ivy-rtags irony-eldoc html-to-markdown highlight-parentheses helm-themes helm-swoop helm-rtags helm-projectile helm-mu helm-lsp helm-ls-git helm-gtags helm-gitlab helm-flyspell helm-flymake helm-flycheck helm-emms helm-descbinds helm-cscope helm-company helm-c-yasnippet gitlab-ci-mode-flycheck git-timemachine ggtags fuzzy flycheck-rtags flycheck-irony expand-region exec-path-from-shell excorporate evil es-windows es-lib epc elfeed el-get ecb doom-themes doom-modeline dired-sidebar dap-mode counsel-projectile company-shell company-rtags company-irony company-c-headers color-theme cmake-mode cil-mode cider ccls bbdb auto-complete-clang auto-complete-c-headers anaconda-mode all-the-icons-dired airline-themes ac-helm)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 
 ;; (custom-set-faces

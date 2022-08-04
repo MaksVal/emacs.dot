@@ -42,9 +42,6 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 
-;; Magit status
-(global-set-key (kbd "C-x g") 'magit-status)
-
 ;; Man pages
 (global-set-key (kbd "<f1>") 'man)
 

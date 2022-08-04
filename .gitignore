@@ -1,3 +1,12 @@
 **/.cask
 **/elpha
+**/**/elpha
 **/**~
+**/eshell/**
+**/var/**
+**/elpa/**
+**/.lsp-session-v1
+**/.org-id-locations
+**/ac-comphist.dat
+**/bookmarks
+**/.#recentf

@@ -3,6 +3,17 @@
 ;; Все ORG файлы
 (require 'org)
 
+;;;;;;;;;;;
+;; Plantuml
+;;;;;;;;;;;
+(use-package plantuml-mode
+  :config
+  (setq org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar"))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+  )
+
+
 ;; (setq debug-on-error t)
 (setq org-capture-templates
       '(("t" "todo" entry (file+headline "~/project.org" "Tasks")

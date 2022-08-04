@@ -24,6 +24,8 @@
 
 (require 'yasnippet)
 
+(require 'p4)
+
 ;;(require 'ac-helm)  ;; Not necessary if using ELPA package
 ;; (require 'company)
 
@@ -206,11 +208,16 @@
 ;(global-linum-mode t)
 (add-hook 'prog-mode-hook 'linum-mode)
 
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.c\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MODES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'auto-mode-alist '("\\.h\\'" 		. c-mode))
+(add-to-list 'auto-mode-alist '("\\.c\\'"  		. c-mode))
+(add-to-list 'auto-mode-alist '("\\.hpp\\'" 	. c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cpp\\'" 	. c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cc\\'" 		. c++-mode))
+(add-to-list 'auto-mode-alist '("\\.Single\\'"  . makefile-mode))
+;;;;;;;;;;;;;;;; end modes ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (use-package go-mode
 ;;   :ensure t
@@ -224,6 +231,7 @@
 
 ;;(setq lsp-keymap-prefix "C-c g")  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (use-package lsp-mode
+  :disabled
   :requires dash
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
@@ -241,8 +249,7 @@
          )
   :commands (lsp lsp-deferred)
   :config
-  '(lsp-project-blacklist (quote ("~/Projects/kernels/$"))
-  '(lsp-project-blacklist (quote ("~/Projects/hw/cisco_rvpn/spool$"))))
+  '(lsp-project-blacklist (quote ("~/Projects/kernels/$")))
 )
 
 
@@ -262,8 +269,10 @@
 ;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
 
 ;; if you are ivy user
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
 (use-package dap-mode)
@@ -285,11 +294,13 @@
 ;;   (require 'config-ccls)
 ;;   )
 
-(use-package lsp-mode :commands lsp)
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
+(use-package lsp-mode
+  :commands lsp)
+(use-package company-lsp
+  :commands company-lsp)
 
 (use-package ccls
+  :disabled
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
@@ -316,15 +327,25 @@
 ;; ECB
 
 ;;;;;;;;;;;;;;;;;;;;; CodeStyle ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package clang-format+
+  :config
+  (add-hook 'c-mode-common-hook #'clang-format+-mode)
+  (add-hook 'c-mode-hook 'clang-format+-mode)
+  (setq clang-format+-context #'modification)
+  (local-set-key [tab] 'clang-format-region))
+
+
 
 (setq c-default-style '((c-mode . "bsd")
                         (c++mode . "bsd")
                         (other . "free-group-style")))
-(setq-default c-basic-offset 4)
+;; TABs
+(setq-default c-basic-offset 4
+              tab-width 4
+              indent-tabs-mode nil); отступ делается табами
+
 
 ;;;;;;;;;;;;;;;;;;;; Show TABs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default indent-tabs-mode nil) ; отступ делается табами
-(setq tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
 ;; set this in all c-based programming modes
 (add-hook 'c-mode-hook
@@ -338,10 +359,20 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
-;; TABs
-;;;; CodeStyle
-
 ;;;;;;;;;;;;;;;;;;;;; Navigation ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package ggtags
+  :requires xref
+  :config
+  ;; Enable helm-gtags-mode in languages that GNU Global supports
+  (add-hook 'c-mode-hook 'ggtags-mode 'xref-etags-mode)
+  (add-hook 'c++-mode-hook 'ggtags-mode  'xref-etags-mode)
+  (add-hook 'java-mode-hook 'ggtags-mode 'xref-etags-mode)
+  (add-hook 'asm-mode-hook 'ggtags-mode 'xref-etags-mode)
+  (add-hook 'python-mode 'ggtags-mode 'xref-etags-mode)
+  (add-hook 'lisp-mode 'ggtags-mode 'xref-etags-mode)
+  (add-hook 'elisp-mode 'ggtags-mode 'xref-etags-mode)
+  )
+
 ;; (use-package helm-gtags
 ;;   :requires (ggtags)
 ;;   :bind ( :map helm-gtags-mode-map
@@ -428,6 +459,24 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+
+;;;;;;;;;;;;;;;;;;;; P4 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package p4
+  :config
+  (global-set-key (kbd "C-c p") 'p4-prefix-map)
+  (global-set-key (kbd "C-x p") 'p4-status)
+  )
+;;;;;;;;;;;;;;;;;;;; Magit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package magit
+  :config
+  ;; For Magit: disable auto revert buffer
+  (setq magit-auto-revert-mode nil)
+  (setq magit-gpg-secret-key-hist nil)    ; For working gpg-agent
+  (global-set-key (kbd "C-c g") 'magit-file-dispatch)
+  ;; Magit status
+  (global-set-key (kbd "C-x g") 'magit-status)
+
+)
 
 
 (provide 'ide)
