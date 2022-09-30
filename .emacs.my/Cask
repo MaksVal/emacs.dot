@@ -118,7 +118,6 @@
 (depends-on "helm-swoop")
 (depends-on "helm-mu")
 (depends-on "helm-ls-git")
-(depends-on "helm-projectile")
 (depends-on "helm-gitlab")
 (depends-on "helm-cscope")
 ;;;;;;
@@ -183,7 +182,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; ORG MODE
 ;;;;;;;;;;;;;;;;;;;;;;;;
-(depends-on "org-redmine")
+(depends-on "org-projectile")
 (depends-on "org-mime")
 (depends-on "org-mobile-sync")
 ;; (depends-on "org-sync" :git "git://orgmode.org/org-sync.git")
@@ -208,6 +207,7 @@
 ;; (depends-on "sunrise-commander")
 (depends-on "cmake-mode")
 (depends-on "projectile")
+(depends-on "counsel-projectile")
 (depends-on "visual-fill-column")
 (depends-on "git-timemachine")
 (depends-on "smart-mode-line")

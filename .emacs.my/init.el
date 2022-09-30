@@ -2,7 +2,15 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(setq url-proxy-services
+   '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
+     ("http" . "192.168.137.1:3128")
+     ("https" . "192.168.137.1:3128")))
+
+
 (setq custom-file "~/.emacs.my/init.el")
+
+
 
 (require 'cl-lib)
 

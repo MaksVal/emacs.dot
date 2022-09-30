@@ -10,3 +10,6 @@
 **/ac-comphist.dat
 **/bookmarks
 **/.#recentf
+**/projectile.cache
+*/projectile.cache
+.emacs.my/projectile.cache
