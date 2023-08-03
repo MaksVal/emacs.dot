@@ -5,6 +5,7 @@
 ;; (load "gitlab")
 
 (use-package gitlab
+  :disable
   :config
   ;; Gitlab
   (global-set-key (kbd "\C-c\C-x g i") 'helm-gitlab-issues)

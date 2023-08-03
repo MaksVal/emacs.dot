@@ -20,6 +20,7 @@
 
 (use-package spacemacs-theme
   :defer t
+  :ensure t
   :init
   (load-theme 'spacemacs-dark t)
   (setq spacemacs-theme-org-agenda-height nil)
@@ -105,6 +106,7 @@
 
 
 (use-package doom-themes
+  :ensure t	     
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled

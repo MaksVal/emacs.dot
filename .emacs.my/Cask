@@ -1,7 +1,7 @@
 (source gnu)
 (source melpa)
-(source marmalade)
-(source org)
+;;(source marmalade)
+;;(source org)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; System dependencies ;;;;;
@@ -15,7 +15,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (depends-on "youtrack" :git "git@git.nrpo.ntc-vulkan.ru:m.gordeev/emacs-youtrack.git")
 ;; (depends-on "youtrack" :git "/home/mgordeev/Projects/emacs-youtrack")
-
+(depends-on "tablist")
+(depends-on "babel")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; WeeChat
@@ -50,8 +51,11 @@
 (depends-on "gitlab-ci-mode-flycheck")
 (depends-on "xcscope")
 (depends-on "highlight-parentheses")
-(depends-on "tfsmacs")
+(depends-on "clang-format")
+(depends-on "clang-format+")
 
+(depends-on "rustic")
+(depends-on "yasnippet")
 
 ;;(depends-on "go-mode")
 
@@ -62,6 +66,7 @@
 ;; (depends-on "helm-lsp")
 (depends-on "dap-mode")
 (depends-on "which-key")
+(depends-on "idlwave")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; IVY
@@ -129,10 +134,12 @@
 (depends-on "json-rpc")
 (depends-on "let-alist")
 (depends-on "magit")
+(depends-on "p4")
 (depends-on "gitlab") ;; :git "https://github.com/nlamirault/emacs-gitlab.git")
 (depends-on "exec-path-from-shell")
 (depends-on "move-text")
 (depends-on "markdown-mode")
+(depends-on "pandoc-mode")
 (depends-on "ox-gfm")
 (depends-on "multi-term")
 (depends-on "nav")
@@ -187,6 +194,10 @@
 (depends-on "org")
 (depends-on "org-noter")
 (depends-on "org-mru-clock")
+(depends-on "org-jira")
+;;(depends-on "ejira")
+(depends-on "htmlize")
+(depends-on "plantuml-mode")
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (depends-on "cil-mode")

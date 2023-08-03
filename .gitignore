@@ -1,3 +1,15 @@
 **/.cask
 **/elpha
+**/**/elpha
 **/**~
+**/eshell/**
+**/var/**
+**/elpa/**
+**/.lsp-session-v1
+**/.org-id-locations
+**/ac-comphist.dat
+**/bookmarks
+**/.#recentf
+**/projectile.cache
+*/projectile.cache
+.emacs.my/projectile.cache

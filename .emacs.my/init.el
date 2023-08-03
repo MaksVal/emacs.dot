@@ -1,10 +1,6 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (setq custom-file "~/.emacs.my/init.el")
 
-(require 'cl-lib)
+;; (require 'cl-lib)
 
 (setq inhibit-startup-message t)
 ;; (add-to-list 'load-path    ".emacs.my/" )
@@ -15,37 +11,45 @@
 ;; (add-to-list 'load-path    "~/.emacs.my/gsync/" )
 ;; (add-to-list 'load-path    "~/.emacs.my/custom/")
 
+(setq package-user-dir "~/.emacs.d/.cask/28.1/elpa")
+
+
+(require 'cask "/home/mgordeev/.cask/cask.el")
+;; (require 'cask "/usr/share/cask/cask.el")
+;; (cask-initialize)
+;;(package-initialize)
+;; (debug-on-entry 'package-initialize)
 (require 'repoconf)
 
-;; cask
-;; (require 'cask "~/.cask/cask.el")
-(require 'cask "/usr/share/cask/cask.el")
-(cask-initialize)
-(package-initialize t)
-(debug-on-entry 'package-initialize)
-
-
 (require 'dbus)
+
+
+(use-package use-package-ensure-system-package
+  :ensure t)
 
 (setq use-package-always-demand (daemonp))
 
 ;;;;;;;;;;;;;;;;;;;
 ;; My config
 ;;;;;;;;;;;;;;;;;;;
+;;(require 'config-packages)
 (require 'optimization)
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.my
 ;;   (require 'use-package))
+(require 'config-base)
 (require 'config-faces)
 (require 'variablesconf)
 (require 'keybindsconf)
-;;(require 'popup)
+;; ;;(require 'popup)
 (require 'config-ivy)
 (require 'ide)
 (require 'ide-project)
 ;; (require 'config-helm-gtags)
 (require 'config-console)
 (require 'ui)
+(require 'config-org-jira)
+(require 'orgconf)
 ;;;;;;;;;;;;;;;;;;;
 
 (server-start)
@@ -55,10 +59,14 @@
 ;; (setq epg-gpg-program "/usr/bin/gpg")
 (setq epa-pinentry-mode 'loopback)
 
-(when (memq window-system '(x))
-  (exec-path-from-shell-initialize))
+;; (when (memq window-system '(x))
+;;   (exec-path-from-shell-initialize))
 
-(require 'orgconf)
+;; (use-package plantuml
+;; ;;   :ensure t
+;;    :config
+;;    (require 'plantuml-mode)
+;; )
 ;;(require 'orgsync)
 
 (require 'config-markdown)
@@ -71,23 +79,31 @@
   )
 ;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package unicode-fonts
+  :ensure t
+  :config
+  (require 'unicode-fonts)
+  (unicode-fonts-setup)
+  )
 
-
-(require 'unicode-fonts)
-(unicode-fonts-setup)
 ;; log4e
 (add-to-list 'load-path    "~/.emacs.my/extension/log4e")
 (require 'log4e)
 
 ;; Проверка орфографии
 (add-to-list 'load-path    "~/.emacs.my/extension/chkspell")
-(require 'chkspell)
+;; (use-package chkspell
+;; ;;  :ensure t
+;;   :config
+;;   (require 'chkspell)
+;;   )
 
-(if (file-exists-p "~/.emacs.my/config/config-gitlab.el")
-   (require 'config-gitlab))
+;; (if (file-exists-p "~/.emacs.my/config/config-gitlab.el")
+;;    (require 'config-gitlab))
 
-(if (file-exists-p "~/.emacs.my/config/config-youtrack.el")
-    (require 'config-youtrack))
+;; (if (file-exists-p "~/.emacs.my/config/config-youtrack.el")
+;;     (require 'config-youtrack))
+
 
 
 ;; Helm Descbinds
@@ -96,9 +112,12 @@
 ; making the currently active key bindings interactively searchable
 ; with helm.
 ;;;;;;;
-(require 'helm-descbinds)
-(helm-descbinds-mode)
-
+(use-package helm-descbinds
+  :ensure t
+  :config
+  (require 'helm-descbinds)
+  (helm-descbinds-mode)
+)
 ;;;;;;;;
 
 
@@ -120,11 +139,6 @@
 ;;;; WebKit: need by python-environment
 ;; (add-to-list 'load-path    "~/.emacs.my/extension/webkit")
 ;; (require 'webkit)
-
-;;;;;;;;;;;
-;; For Magit: disable auto revert buffer
-(setq magit-auto-revert-mode nil)
-(setq magit-gpg-secret-key-hist nil)    ; For working gpg-agent
 
 ;; (if (fboundp 'gnutls-available-p)
 ;;     (fmakunbound 'gnutls-available-p))
@@ -161,7 +175,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(wrap-region which-key wcheck-mode visual-fill-column virtualenvwrapper use-package unicode-fonts twittering-mode tfsmacs tangotango-theme tango-plus-theme tango-2-theme sr-speedbar spacemacs-theme smart-mode-line-powerline-theme slime simpleclip sauron ranger prodigy pbcopy paredit paganini-theme ox-gfm org-sync org-redmine org-noter org-mru-clock org-mobile-sync org-mime nyan-mode nav nasm-mode multi-term mu4e-maildirs-extension mu4e-alert move-text magit lua-mode lsp-ui lsp-ivy json-rpc ivy-rtags irony-eldoc html-to-markdown highlight-parentheses helm-themes helm-swoop helm-rtags helm-projectile helm-mu helm-lsp helm-ls-git helm-gtags helm-gitlab helm-flyspell helm-flymake helm-flycheck helm-emms helm-descbinds helm-cscope helm-company helm-c-yasnippet gitlab-ci-mode-flycheck git-timemachine ggtags fuzzy flycheck-rtags flycheck-irony expand-region exec-path-from-shell excorporate evil es-windows es-lib epc elfeed el-get ecb doom-themes doom-modeline dired-sidebar dap-mode counsel-projectile company-shell company-rtags company-irony company-c-headers color-theme cmake-mode cil-mode cider ccls bbdb auto-complete-clang auto-complete-c-headers anaconda-mode all-the-icons-dired airline-themes ac-helm)))
+   '(magit-p4 wrap-region which-key wcheck-mode visual-fill-column virtualenvwrapper use-package-ensure-system-package unicode-fonts twittering-mode tangotango-theme tango-plus-theme tango-2-theme sr-speedbar spacemacs-theme smart-mode-line-powerline-theme slime simpleclip sauron rustic ranger prodigy plantuml-mode pbcopy paredit pandoc-mode paganini-theme p4 ox-gfm org-sync org-redmine org-noter org-mru-clock org-mobile-sync org-mime org-jira nyan-mode nav nasm-mode multi-term mu4e-maildirs-extension mu4e-alert move-text magit lua-mode lsp-ui lsp-ivy json-rpc ivy-rtags irony-eldoc htmlize html-to-markdown highlight-parentheses helm-themes helm-swoop helm-rtags helm-projectile helm-mu helm-ls-git helm-gtags helm-gitlab helm-flyspell helm-flymake helm-flycheck helm-emms helm-descbinds helm-cscope helm-company helm-c-yasnippet go-mode gitlab-ci-mode-flycheck git-timemachine ggtags fuzzy flymake-go flycheck-rtags flycheck-irony expand-region exec-path-from-shell excorporate evil es-windows es-lib epc elfeed el-get ecb doom-themes doom-modeline dired-sidebar dap-mode counsel-projectile company-shell company-rtags company-irony company-c-headers color-theme cmake-mode clang-format+ cil-mode cider ccls bbdb babel auto-complete-clang auto-complete-c-headers anaconda-mode all-the-icons-dired airline-themes ac-helm)))
 
 
 ;; (custom-set-faces

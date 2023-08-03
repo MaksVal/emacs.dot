@@ -1,7 +1,23 @@
 ;;;;;;;;;;;;;; ORG MODE ;;;;;;;;;;;;;;;;; ;;
 
 ;; Все ORG файлы
-(require 'org)
+(use-package org
+  :ensure t
+  :config
+  (require 'org)
+  )
+
+;;;;;;;;;;;
+;; Plantuml
+;;;;;;;;;;;
+(use-package plantuml-mode
+  :disabled
+  :config
+  (setq org-plantuml-jar-path (expand-file-name "~/bin/plantuml.jar"))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+  )
+
 
 ;; (setq debug-on-error t)
 (setq org-capture-templates
@@ -50,6 +66,7 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-switchb)
+;; (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-M-;") 'org/capture-todo)
 (global-set-key (kbd "C-M-'") 'ort/capture-checkitem)
 (global-set-key (kbd "C-M-`") 'ort/goto-todos)
@@ -67,13 +84,16 @@
 (setq org-directory "~/ORG")
 
 (setq org-directory "~/ORG")
-(setq org-default-notes-file "~/ORG/refile.org.gpg")
+(setq org-default-notes-file "~/ORG/refile.org")
 (setq org-defailt-datetree-file "~/ORG/diary.org.gpg")
-(setq org-agenda-files (list "~/ORG/projects.org"))
+(setq org-agenda-files (list "~/ORG/projects.org"
+                             "~/ORG/reviews.org"
+                             "~/ORG/refile.org"
+                             ))
 
 ;; Set TODO keywords
 (setq org-todo-keywords
-      '((sequence "TODO" "VERIFY" "|" "DONE" "WAIT")))
+      '((sequence "TODO" "VERIFY" "|" "DONE" "WAIT" "|" "IN_REVIEW")))
 
 
 ;; AWESOME: show current org agenda
@@ -165,12 +185,12 @@
 
 ;;;;;; Задать название
 ;; Custom Key Bindings
-(global-set-key (kbd "<f5>") 'bh/org-todo)
+(global-set-key (kbd "<f5>") 'org-capture)
 (global-set-key (kbd "<S-f5>") 'bh/widen)
 (global-set-key (kbd "<f7>") 'bh/set-truncate-lines)
 (global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
 (global-set-key (kbd "<f9> <f9>") 'bh/show-org-agenda)
-(global-set-key (kbd "<f9> b") 'bbdb)
+(global-set-key (kbd "<f9> b") 'org-switchb)
 (global-set-key (kbd "<f9> c") 'calendar)
 (global-set-key (kbd "<f9> f") 'boxquote-insert-file)
 (global-set-key (kbd "<f9> g") 'gnus)
@@ -223,19 +243,20 @@
 
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "IN_REVIEW(r)" "|" "DONE(d)")
               (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
 
 ;; Set color
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
               ("NEXT" :foreground "blue" :weight bold)
-              ("DONE" :foreground "forest green" :weight bold)
+              ("DONE" :foreground "green" :weight bold)
               ("WAITING" :foreground "orange" :weight bold)
               ("HOLD" :foreground "magenta" :weight bold)
-              ("CANCELLED" :foreground "forest green" :weight bold)
-              ("MEETING" :foreground "forest green" :weight bold)
-              ("PHONE" :foreground "forest green" :weight bold))))
+              ("CANCELLED" :foreground "yellow" :weight bold)
+              ("MEETING" :foreground "yellow" :weight bold)
+              ("PHONE" :foreground "yellow" :weight bold)
+              ("IN_REWIEW" :foreground "forset green" :weight bold))))
 
 ;; Set follow rules
 (setq org-todo-state-tags-triggers
@@ -331,6 +352,20 @@
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
+              ("D" "Events" agenda "display deadlines (2 months) and exclude scheduled"
+               (
+                (org-agenda-span 62)  ;; 'month
+                (org-agenda-time-grid nil)
+                (org-agenda-show-all-dates nil)
+                (org-agenda-entry-types '(:deadline)) ;; this entry excludes :scheduled
+                ))
+              ("S" "Events" agenda "display scheduled"
+               (
+                (org-agenda-span 62)
+                (org-agenda-time-grid nil)
+                (org-agenda-show-all-dates nil)
+                (org-agenda-entry-types '(:scheduled)) ;; this entry excludes :scheduled
+                ))
               (" " "Agenda"
                ((agenda "" nil)
                 (tags "REFILE"
@@ -805,32 +840,31 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 ;;;;;; END
 
-;;;;;; Agenda
-;; (setq org-agenda-custom-commands
-;;       '(("D" "Deadlines" tags "DEADLINE>=\"<today>\"")
-;;         ("A" "Agenda; only deadlines" agenda ""
-;;          (((or )rg-agenda-entry-types '(:deadline)))
-;;          )
-;;         ("C" "ORG Capture" org-capture "") ))
-;;;;;; END
-
 ;;;;;;; ORG-MIME
-(require 'org-mime)
-(setq org-mime-library 'mml)
-;; (setq org-mime-library 'semi)
-;; (add-hook 'message-mode-hook
-;;           (lambda ()
-;;             (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
+(use-package org-mime
+  :ensure t
+  :config
+  (require 'org-mime)
+  (setq org-mime-library 'mml)
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (local-set-key "\C-c\M-o" 'org-mime-org-buffer-htmlize)))
+  ;; (setq org-mime-library 'semi)
+  ;; (add-hook 'message-mode-hook
+  ;;           (lambda ()
+  ;;             (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
 
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (local-set-key "\C-c\M-o" 'org-mime-org-buffer-htmlize)))
 
+)
 ;;;;;;;;;
 ;; Проверка орфографии
 ;;;;;;;;;
-(add-hook 'org-mode-hook 'flyspell-mode)
+(use-package flyspell
+;;  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'flyspell-mode)
+  )
 
 ;; Рисовать картинки
 ;; Альтернатива ORG файле: #+STARTUP keywords 'inlineimages' and 'noinlineimages'.

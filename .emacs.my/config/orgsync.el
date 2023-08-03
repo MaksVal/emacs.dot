@@ -1,17 +1,12 @@
 ;; (require 'org-caldav)
 ;; (require 'org-gcal)
-;; (setq org-gcal-client-id "1055995268584-umhr71a77hca0glh1aecp39mr1v49upo.apps.googleusercontent.com"
-;;       org-gcal-client-secret "4JnG12ndjrTr6YRD-VAT__3k"
-;;       org-gcal-file-alist '(("tmofjm0e4469k390vdlf8o2mn8@group.calendar.google.com" . "~/ORG/OrgLendar.org")
-;; 			    ("valmaxster@gmail.com" .  "~/ORG/valmaxster.org")
+;; (setq org-gcal-client-id ""
+;;       org-gcal-client-secret ""
+;;       org-gcal-file-alist '(("" . "")
+;; 			    ("EMAIL" .  "~/ORG/FILE.org")
 ;;                             ;; ("another-mail@gmail.com" .  "~/task.org")
 ;; 			    ))
 
-
-;; (setq org-caldav-url "https://www.google.com/calendar/ical/valmaxster%40gmail.com/private-d2c862159cef90c16f1f56e36b7139d0/basic.ics")
-;; (setq org-caldav-calendar-id "Максим М")
-;; (setq org-caldav-inbox (expand-file-name "~/ORG/valmaxster.org"))
-;; (setq org-caldav-files `(,org-caldav-inbox))
 
 (require 'orgconf)
 (require 'filenotify)
